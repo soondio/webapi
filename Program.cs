@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplicationLab2.Models1;
+using Microsoft.AspNetCore.Identity;
 using System.Text.Json.Serialization;
 
 
@@ -15,7 +16,8 @@ builder.Services.AddCors(options =>
 
     });
 });
-
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<CompClubWebContext>();
 // Add services to the container.
 builder.Services.AddDbContext<CompClubWebContext>();
 //builder.Services.AddDbContext<CompClubDbContext>(opt => opt.UseInMemoryDatabase("CompClub"));
@@ -35,10 +37,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseHttpsRedirection();
 app.UseCors();
 
-app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

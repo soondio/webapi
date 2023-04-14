@@ -40,6 +40,7 @@ namespace WebApplicationLab2.Controllers
                 TotalPrice = o.TotalPrice,
                 ComputerId=o.ComputerId,
                 StartTime = o.Date,
+                EndTime = o.EndDate,
                 Client = new ClientDto
                 {
                     Id = o.Client.Id,
@@ -83,7 +84,6 @@ namespace WebApplicationLab2.Controllers
             // Создаем новый заказ на основе переданных данных
             var order = new Order
             {
-                Id = orderDto.Id+4,
                 Client = client, // присваиваем клиента заказу
                 ComputerId = orderDto.ComputerId,
                 TotalPrice = orderDto.TotalPrice,
@@ -95,6 +95,7 @@ namespace WebApplicationLab2.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+
         }
 
         // PUT: api/Blogs/5

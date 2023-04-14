@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
-
+using System.IdentityModel;
 namespace WebApplicationLab2.Models1;
 
 public partial class Client
