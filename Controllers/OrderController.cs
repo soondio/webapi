@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using WebApplicationLab2.Models1;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace WebApplicationLab2.Controllers
 {
@@ -130,6 +132,7 @@ namespace WebApplicationLab2.Controllers
             return _context.Orders.Any(e => e.Id == id);
         }
         // DELETE: api/Orders/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
